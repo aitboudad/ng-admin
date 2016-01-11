@@ -1,0 +1,12 @@
+<div class="modal-header">
+    <h3 class="modal-title" compile="::showController.title">
+        {{ ::showController.view.entity.label() | humanize | singularize }}  #{{ ::entry.identifierValue }} Detail
+    </h3>
+</div>
+
+<div class="modal-body row form-horizontal" id="show-view">
+    <p class="lead" ng-if="::showController.description" compile="::showController.description">{{ ::showController.description }}</p>
+    <div ng-repeat="field in ::showController.fields track by $index" compile="::field.getTemplateValueWithLabel(entry)">
+        <ma-show-item field="::field" entry="::entry" entity="::showController.entity" datastore="::showController.dataStore"></ma-show-item>
+    </div>
+</div>

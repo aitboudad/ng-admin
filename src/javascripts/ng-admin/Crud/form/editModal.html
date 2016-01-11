@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <h3 class="modal-title" compile="::formController.title">
+        Edit {{ ::formController.entity.label() | humanize:true | singularize }}  #{{ ::entry.identifierValue }}
+    </h3>
+</div>
+
+<div class="row" id="edit-view" ng-class="::'ng-admin-entity-' + formController.entity.name()">
+    <form class="col-lg-12 form-horizontal" name="formController.form" ng-submit="formController.submitEdition($event)">
+        <div class="modal-body">
+            <p class="lead" ng-if="::formController.description" compile="::formController.description">{{ ::formController.description }}</p>
+            <div ng-repeat="field in ::formController.fields track by $index" compile="::field.getTemplateValueWithLabel(entry)">
+                <ma-field field="::field" value="entry.values[field.name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Save Changes</button>
+        </div>
+    </form>
+</div>

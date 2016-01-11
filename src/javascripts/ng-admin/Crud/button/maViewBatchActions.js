@@ -29,7 +29,7 @@ export default function maViewBatchActionsDirective() {
         <ul class="dropdown-menu" role="menu">
             <li ng-repeat="button in buttons" ng-switch="button">
                 <a ng-switch-when="delete">
-                    <ma-batch-delete-button selection="selection" entity="entity"/>
+                    <ma-batch-delete-button use-popup="entity.batchDeleteView().usePopup" selection="selection" entity="entity"/>
                 </a>
                 <a ng-switch-default>
                     <span compile="button"></span>

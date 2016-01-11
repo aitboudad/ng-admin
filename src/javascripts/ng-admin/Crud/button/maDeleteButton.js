@@ -13,19 +13,25 @@ export default function maDeleteButtonDirective($state) {
             entry: '&',
             size: '@',
             label: '@',
+            usePopup: '=',
         },
         link: function (scope, element, attrs) {
             var entityName = scope.entity() ? scope.entity().name() : attrs.entityName;
             var stateParams = entityName == $state.params.entity ? { ...$state.params } : {};
             stateParams.entity = entityName;
             stateParams.id = scope.entry().identifierValue;
-            scope.stateParams = stateParams;
+
             scope.label = scope.label || 'Delete';
+            scope.delete = function() {
+                var stateName = scope.usePopup ? 'deletePopup':'delete';
+
+                $state.go(stateName, stateParams);
+            };
         },
         template:
-` <a class="btn btn-default" ng-class="size ? \'btn-\' + size : \'\'" ui-sref="delete(stateParams)">
+` <button class="btn btn-default" ng-class="size ? \'btn-\' + size : \'\'" ng-click="delete()">
 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;<span class="hidden-xs">{{ ::label }}</span>
-</a>`
+</button>`
     };
 }
 

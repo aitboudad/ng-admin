@@ -13,19 +13,24 @@ export default function maCreateButtonDirective($state) {
             defaultValues: '&',
             size: '@',
             label: '@',
+            usePopup: '=',
         },
         link: function (scope, element, attrs) {
             var entityName = scope.entity() ? scope.entity().name() : attrs.entityName;
             var stateParams = entityName == $state.params.entity ? { ...$state.params } : {};
             stateParams.entity = entityName;
             stateParams.defaultValues = scope.defaultValues();
-            scope.stateParams = stateParams;
             scope.label = scope.label || 'Create';
+            scope.create = function() {
+                var stateName = scope.usePopup ? 'createPopup':'create';
+
+                $state.go(stateName, stateParams);
+            };
         },
         template:
-` <a class="btn btn-default" ng-class="size ? \'btn-\' + size : \'\'" ui-sref="create(stateParams)">
+` <button class="btn btn-default" ng-class="size ? \'btn-\' + size : \'\'" ng-click="create()">
 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;<span class="hidden-xs">{{ ::label }}</span>
-</a>`
+</button>`
     };
 }
 

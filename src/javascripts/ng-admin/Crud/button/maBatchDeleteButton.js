@@ -5,6 +5,7 @@ export default function maBatchDeleteButtonDirective($state) {
             entity: '&',
             selection: '&',
             label: '@',
+            usePopup: '=',
         },
         link: function ($scope) {
             $scope.label = $scope.label || 'Delete';
@@ -14,7 +15,8 @@ export default function maBatchDeleteButtonDirective($state) {
                     return entry.identifierValue;
                 });
 
-                $state.go('batchDelete', angular.extend({
+                var stateName = $scope.usePopup ? 'batchDeletePopup':'batchDelete';
+                $state.go(stateName, angular.extend({
                     ids: ids,
                     entity: $scope.entity().name()
                 }, $state.params));

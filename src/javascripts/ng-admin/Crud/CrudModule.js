@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 var CrudModule = angular.module('crud', [
-    'ui.router', 'ui.bootstrap', 'ngSanitize', 'textAngular', 'ngInflection', 'ui.codemirror', 'ngFileUpload', 'ngNumeraljs'
+    'ui.router', 'ui.bootstrap', 'ngSanitize', 'ngAnimate', 'textAngular', 'ngInflection', 'ui.codemirror', 'ngFileUpload', 'ngNumeraljs'
 ]);
 
 CrudModule.controller('ListLayoutController', require('./list/ListLayoutController'));
@@ -10,6 +10,10 @@ CrudModule.controller('ShowController', require('./show/ShowController'));
 CrudModule.controller('FormController', require('./form/FormController'));
 CrudModule.controller('DeleteController', require('./delete/DeleteController'));
 CrudModule.controller('BatchDeleteController', require('./delete/BatchDeleteController'));
+
+CrudModule.controller('ModalFormController', require('./form/ModalFormController'));
+CrudModule.controller('ModalDeleteController', require('./delete/ModalDeleteController'));
+CrudModule.controller('ModalBatchDeleteController', require('./delete/ModalBatchDeleteController'));
 
 CrudModule.service('EntryFormatter', require('./misc/EntryFormatter'));
 CrudModule.service('PromisesResolver', require('./misc/PromisesResolver'));

@@ -6,7 +6,7 @@
                 <ma-filter-button filters="filters()" enabled-filters="enabledFilters" enable-filter="enableFilter()"></ma-filter-button>
                 <ma-view-batch-actions buttons="::batchButtons()" selection="selection" entity="::entity"></ma-view-batch-actions>
                 <ma-export-to-csv-button entity="::entity" datastore="::datastore"></ma-export-to-csv-button>
-                <ma-create-button ng-if="::entity.creationView().enabled" entity="::entity"></ma-create-button>
+                <ma-create-button ng-if="::entity.creationView().enabled" use-popup="entity.creationView().usePopup" entity="::entity"></ma-create-button>
             </ma-view-actions>
 
             <h1 compile="::llCtrl.view.title()">

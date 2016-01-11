@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h3 class="modal-title" compile="::deleteController.title">
+        Delete {{ ::deleteController.view.entity.label() | humanize:true | singularize }}  #{{ ::entry.identifierValue }}
+    </h3>
+</div>
+
+<div id="delete-view">
+    <div class="modal-body">
+        <p class="lead" ng-if="::deleteController.description" compile="::deleteController.description">{{ ::deleteController.description }}</p>
+        <p>Are you sure ?</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger" ng-click="deleteController.deleteOne()">Yes</button>
+        <button class="btn btn-default" ng-click="deleteController.back()">No</button>
+    </div>
+</div>

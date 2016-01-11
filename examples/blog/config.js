@@ -74,7 +74,7 @@
             return value.length > 50 ? value.substr(0, 50) + '...' : value;
         }
 
-        var admin = nga.application('ng-admin backend demo') // application main title
+        var admin = nga.application('test backend demo') // application main title
             .debug(false) // debug disabled
             .baseApiUrl('http://localhost:3000/'); // main API endpoint
 
@@ -141,6 +141,7 @@
             });
 
         post.creationView()
+            .enablePopup()
             .fields([
                 nga.field('title') // the default edit field type is "string", and displays as a text input
                     .attributes({ placeholder: 'the post title' }) // you can add custom attributes, too
@@ -150,7 +151,13 @@
                 nga.field('published_at', 'date') // Date field type translates to a datepicker
             ]);
 
+        // post.deletionView()
+        //     .enablePopup();
+        post.batchDeleteView()
+            .enablePopup();
+
         post.editionView()
+            .enablePopup()
             .title('Edit post "{{ entry.values.title }}"') // title() accepts a template string, which has access to the entry
             .actions(['list', 'show', 'delete']) // choose which buttons appear in the top action bar. Show is disabled by default
             .fields([
@@ -206,6 +213,7 @@
             ]);
 
         post.showView() // a showView displays one entry in full page - allows to display more data than in a a list
+            .enablePopup()
             .fields([
                 nga.field('id'),
                 nga.field('category', 'choice') // a choice field is rendered as a dropdown in the edition view
